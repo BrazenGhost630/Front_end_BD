@@ -1,5 +1,7 @@
 import { useState } from 'react';
-
+import InsertarPropietario from './page/propietario.jsx';
+import InsertarCliente from './page/cliente.jsx';
+import CargarPropiedadesPotenciales from './page/Cargar_propiedades_potenciales.jsx';
 function App() {
   const [form, setForm] = useState({
     ENTREGA_PROPIEDAD: '',
@@ -11,7 +13,8 @@ function App() {
     VALOR_GASTO: '',
     NUM_RUT_PROPIETARIO: '',
     ID_COMUNA: '',
-    ID_PROPIEDAD: ''
+    ID_PROPIEDAD: '',
+    NUMRUT_EMP: ''
   });
 
   const handleChange = (e) => {
@@ -42,7 +45,18 @@ function App() {
         ))}
         <button type="submit">Insertar</button>
       </form>
+
+        <InsertarPropietario />
+
+
+        <InsertarCliente />
+
+
+        <CargarPropiedadesPotenciales />
+
     </div>
+
+    
   );
 }
 
