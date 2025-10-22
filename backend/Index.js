@@ -13,10 +13,6 @@ app.use(express.json());
 
 const PORT = 4000;
 
-console.log('DB_USER:', process.env.DB_USER);
-console.log('DB_PASS:', process.env.DB_PASS);
-console.log('DB_HOST:', process.env.DB_HOST);
-
 
 app.post('/insertar-propiedad', async (req, res) => {
   const {
@@ -62,6 +58,7 @@ app.post('/insertar-propiedad', async (req, res) => {
   },
       { autoCommit: true }
     );
+    await connection.close();
 
     res.status(200).json({ message: 'Propiedad insertada correctamente' });
   } catch (err) {
@@ -131,10 +128,11 @@ app.post('/api/propietarios', async (req, res) => {
         fonoFijo,
         celular,
         idComuna
-      }
+      },
+      { autoCommit: true }
     );
 
-    await connection.commit();
+    
     await connection.close();
 
     res.json({ message: 'Propietario insertado correctamente ✅' });
@@ -187,8 +185,10 @@ app.post("/api/clientes", async (req, res) => {
         fonofijo_cli,
         celular_cli,
         renta_cli,
-      }
+      },
+      { autoCommit: true }
     );
+    await connection.close();
 
     res.json({ message: "Cliente insertado correctamente" });
   } catch (error) {
